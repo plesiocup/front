@@ -1,7 +1,9 @@
+import { H1 } from "@/components/ui/typography";
+
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
+      <H1>Home</H1>
       <p>This is the home page</p>
     </div>
   );
