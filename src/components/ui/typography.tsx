@@ -1,6 +1,6 @@
-import { ComponentProps, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 const H1 = forwardRef<HTMLHeadingElement, ComponentProps<'h1'>>(
   ({ className, ...props }, ref) => (
@@ -13,8 +13,8 @@ const H1 = forwardRef<HTMLHeadingElement, ComponentProps<'h1'>>(
       {...props}
     />
   ),
-);
-H1.displayName = 'H1';
+)
+H1.displayName = 'H1'
 
 const H2 = forwardRef<HTMLHeadingElement, ComponentProps<'h2'>>(
   ({ className, ...props }, ref) => (
@@ -27,47 +27,37 @@ const H2 = forwardRef<HTMLHeadingElement, ComponentProps<'h2'>>(
       {...props}
     />
   ),
-);
-H2.displayName = 'H2';
+)
+H2.displayName = 'H2'
 
 const H3 = forwardRef<HTMLHeadingElement, ComponentProps<'h3'>>(
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn(
-        'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight',
-        className,
-      )}
+      className={cn('mt-8 scroll-m-20 text-2xl font-semibold tracking-tight', className)}
       {...props}
     />
   ),
-);
-H3.displayName = 'H3';
+)
+H3.displayName = 'H3'
 
 const H4 = forwardRef<HTMLHeadingElement, ComponentProps<'h4'>>(
   ({ className, ...props }, ref) => (
     <h4
       ref={ref}
-      className={cn(
-        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
-        className,
-      )}
+      className={cn('mt-8 scroll-m-20 text-xl font-semibold tracking-tight', className)}
       {...props}
     />
   ),
-);
-H4.displayName = 'H4';
+)
+H4.displayName = 'H4'
 
 const P = forwardRef<HTMLParagraphElement, ComponentProps<'p'>>(
   ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}
-      {...props}
-    />
+    <p ref={ref} className={cn('leading-7', className)} {...props} />
   ),
-);
-P.displayName = 'P';
+)
+P.displayName = 'P'
 
 const List = forwardRef<HTMLUListElement, ComponentProps<'ul'>>(
   ({ className, ...props }, ref) => (
@@ -77,7 +67,7 @@ const List = forwardRef<HTMLUListElement, ComponentProps<'ul'>>(
       {...props}
     />
   ),
-);
-List.displayName = 'List';
+)
+List.displayName = 'List'
 
-export { H1, H2, H3, H4, P, List };
+export { H1, H2, H3, H4, List, P }
