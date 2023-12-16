@@ -5,7 +5,8 @@ import { H3 } from '@/components/ui/typography'
 import { ItemData } from '@/types/custom/itemData'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const getSearchId = async (value: string) => {
   const data = await axios.request<string>({
@@ -25,6 +26,11 @@ const getSearchedData = async (searchId: string) => {
 }
 
 function SearchResult() {
+  // cookieからjwtを取得、なければloginに飛ばす
+  if (Cookies.get('jwt') === undefined) {
+    const navigation = useNavigate()
+    navigation('/login')
+  }
   // const itemList: ItemData = useQuery(['recommends'], fetchRecommends)
   const { value } = useParams()
 

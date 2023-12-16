@@ -1,10 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { setupMsw } from './mock/browser'
 import About from './pages/About'
 import Home from './pages/Home'
+import { Login } from './pages/Login'
+import Notfound from './pages/Notfound'
 import SearchResult from './pages/SearchResult'
+import { Signup } from './pages/Signup'
 
 function App() {
   const isDark = true
@@ -22,13 +25,13 @@ function App() {
     <div className='App'>
       <QueryClientProvider client={queryClient}>
         <Routes>
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/404' element={<Notfound />} />
+          <Route path='*' element={<Navigate to='/404' replace />} />
           <Route path='/' element={<Home />} />
-          <Route path='/about/'>
-            <Route path=':movie_id' element={<About />} />
-          </Route>
-          <Route path='/search/'>
-            <Route path=':value' element={<SearchResult />} />
-          </Route>
+          <Route path='/about/:movie_id' element={<About />} />
+          <Route path='/search/:value' element={<SearchResult />} />
         </Routes>
       </QueryClientProvider>
     </div>

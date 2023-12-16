@@ -6,9 +6,11 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Header() {
-  // const [value, setValue] = useState('')
-  const { register, handleSubmit } = useForm()
-  // /search?:value に遷移
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
   const navigation = useNavigate()
   const onSubmit = (data: any) => {
     navigation(`/search/${data.search}`)
@@ -22,7 +24,13 @@ function Header() {
         </Link>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='flex w-full max-w-sm items-center space-x-2'>
-            <Input type='text' placeholder='Search' id='search' {...register('search')} />
+            {errors.search && <span>This field is required</span>}
+            <Input
+              type='text'
+              placeholder='Search'
+              id='search'
+              {...register('search', { required: true })}
+            />
             <Button type='submit'>Search</Button>
           </div>
         </form>

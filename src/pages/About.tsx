@@ -5,7 +5,8 @@ import { H1, P } from '@/components/ui/typography'
 import { ItemData } from '@/types/custom/itemData'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { Link, useLocation } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import ReactStars from 'react-stars'
 
 const contentbasedRecommend = async (searchId: string, user: string) => {
@@ -18,6 +19,11 @@ const contentbasedRecommend = async (searchId: string, user: string) => {
 }
 
 function About() {
+  // cookieからjwtを取得、なければloginに飛ばす
+  if (Cookies.get('jwt') === undefined) {
+    const navigation = useNavigate()
+    navigation('/login')
+  }
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
   const searchId = queryParams.get('searchId')
