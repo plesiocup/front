@@ -5,7 +5,7 @@ type TagProps = {
 }
 
 const Tag: React.FC<TagProps> = (props) => {
-  const { children } = props
+  const { children, ...rest } = props
   return (
     <div className='bg-gray-200 rounded px-1 py-[0.2rem]'>
       <P className=' text-xs text-black'>{children}</P>
