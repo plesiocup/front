@@ -142,5 +142,3 @@ export const recommendsData: ItemData[] = [
     play_time: 130,
   },
 ]
-
-console.log(recommendsData[0])
