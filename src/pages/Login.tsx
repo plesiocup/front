@@ -32,7 +32,7 @@ export function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm()
   const [error, setError] = useState('')
 
