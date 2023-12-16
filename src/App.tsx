@@ -1,9 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { setupMsw } from './mock/browser'
 import About from './pages/About'
 import Home from './pages/Home'
 import SearchResult from './pages/SearchResult'
-import Test from './pages/Test'
 
 function App() {
   const isDark = true
@@ -13,15 +14,23 @@ function App() {
   } else {
     body?.classList.remove('dark')
   }
+  const queryClient = new QueryClient()
+
+  setupMsw()
 
   return (
     <div className='App'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<SearchResult />} />
-        <Route path='/test' element={<Test />} />
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about/'>
+            <Route path=':movie_id' element={<About />} />
+          </Route>
+          <Route path='/search/'>
+            <Route path=':value' element={<SearchResult />} />
+          </Route>
+        </Routes>
+      </QueryClientProvider>
     </div>
   )
 }
