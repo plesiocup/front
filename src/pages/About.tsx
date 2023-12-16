@@ -39,34 +39,40 @@ function About() {
   return (
     <>
       <Header />
-      <div
-        className='relative w-screen h-screen '
-        style={{
-          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${item?.image_url})`,
-          backgroundSize: 'cover',
-        }}
-      >
-        <div className='container h-full pt-[65px] flex flex-col justify-center gap-5 py-12'>
-          <H1 className='text-white'>{item?.title}</H1>
-          <P className='text-white'>{item?.description}</P>
-          <div className='flex justify-between items-end'>
-            <div className='flex gap-3'>
-              <ReactStars
-                count={5}
-                value={item.evaluation}
-                edit={false}
-                color2={'#ffd700'}
-              />
-              <P className=' text-base text-white'>{item.release_year}</P>
-              <P className=' text-base text-white'>{time}</P>
-              <Tag>{item.category}</Tag>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error!!</p>
+      ) : (
+        <div
+          className='relative w-screen h-screen '
+          style={{
+            backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${item?.image_url})`,
+            backgroundSize: 'cover',
+          }}
+        >
+          <div className='container h-full pt-[65px] flex flex-col justify-center gap-5 py-12'>
+            <H1 className='text-white'>{item?.title}</H1>
+            <P className='text-white'>{item?.description}</P>
+            <div className='flex justify-between items-end'>
+              <div className='flex gap-3'>
+                <ReactStars
+                  count={5}
+                  value={item.evaluation}
+                  edit={false}
+                  color2={'#ffd700'}
+                />
+                <P className=' text-base text-white'>{item.release_year}</P>
+                <P className=' text-base text-white'>{time}</P>
+                <Tag>{item.category}</Tag>
+              </div>
+              <Link to={`${item.movie_url}`}>
+                <Button variant='secondary'>Go to movie</Button>
+              </Link>
             </div>
-            <Link to={`${item.movie_url}`}>
-              <Button variant='secondary'>Go to movie</Button>
-            </Link>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
