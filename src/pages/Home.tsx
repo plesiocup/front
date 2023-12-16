@@ -5,6 +5,8 @@ import { H3, P } from '@/components/ui/typography'
 import { ItemData } from '@/types/custom/itemData'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const fetchRecommends = async () => {
   const data = await axios.request<ItemData[]>({
@@ -12,19 +14,20 @@ const fetchRecommends = async () => {
     url: '/userbasedRecommend',
   })
   console.log(data)
-
   return data
 }
 
 function Home() {
-  // const itemList: ItemData = useQuery(['recommends'], fetchRecommends)
+  // cookieからjwtを取得、なければloginに飛ばす
+  if (Cookies.get('jwt') === undefined) {
+    const navigation = useNavigate()
+    navigation('/login')
+  }
   const { data, error, isLoading } = useQuery({
     queryKey: ['recommends'],
     queryFn: fetchRecommends,
   })
   const itemList: ItemData[] | undefined = data?.data
-
-  // const form = useForm<>()
 
   return (
     <>
