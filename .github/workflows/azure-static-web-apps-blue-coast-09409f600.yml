@@ -38,6 +38,9 @@ jobs:
           api_location: '' # Api source code path - optional
           output_location: 'dist' # Use the zipped artifact
           ###### End of Repository/Build Configurations ######
+        env: VITE_NODE_ENV:${{ secrets.VITE_NODE_ENV }}
+          VITE_USE_MSW=${{ secrets.VITE_USE_MSW }}
+          VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -50,6 +53,3 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_COAST_09409F600 }}
           action: 'close'
-        env: VITE_NODE_ENV:${{ secrets.VITE_NODE_ENV }}
-          VITE_USE_MSW=${{ secrets.VITE_USE_MSW }}
-          VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}
