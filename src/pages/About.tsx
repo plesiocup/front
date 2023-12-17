@@ -90,7 +90,7 @@ function About() {
   const {
     data: recommendData,
     error: recommendError,
-    isLoading: recommendIsLoading,
+    // isLoading: recommendIsLoading,
   } = useQuery({
     queryKey: ['recommendData'],
     queryFn: () => contentbasedRecommend(category),

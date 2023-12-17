@@ -42,7 +42,11 @@ export function Login() {
   } = useForm()
   const navigation = useNavigate()
 
-  const { mutate, data, error } = useMutation({
+  const {
+    mutate,
+    // data,
+    // error
+  } = useMutation({
     mutationFn: fetchLogin,
     onSuccess: (data) => {
       const jwtToken = data?.data.token
