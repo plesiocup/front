@@ -26,6 +26,8 @@ const fetchSignUp = async (reqData: SignUpRequest) => {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
+        // corsの設定
+        'Access-Control-Allow-Origin': '*',
       },
       url: `${baseUrl}/signup`,
       data: {
