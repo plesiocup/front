@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import crypto from 'crypto-js'
+import { SHA256 } from 'crypto-js'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
@@ -40,19 +40,18 @@ export const startLogin = ({ email, password }: any) =>
 
 export function Signup() {
   const { register, handleSubmit } = useForm()
-
   const navigation = useNavigate()
 
-  const { mutate, data, error } = useMutation({
+  const { mutate, error } = useMutation({
     mutationFn: fetchSignUp,
-    onSuccess: (data) => {
+    onSuccess: () => {
       navigation('/login')
     },
   })
 
   const onSubmit = async (submitData: any) => {
     submitData.Role = 1
-    submitData.Password = crypto.AES.encrypt(submitData.Password, 'secret').toString()
+    submitData.Password = SHA256(submitData.Password).toString()
     mutate({ ...submitData })
   }
 
@@ -71,7 +70,7 @@ export function Signup() {
                 {...register('UserName', { required: true, minLength: 1 })}
               />
               <Input
-                type='text'
+                type='email'
                 placeholder='Email'
                 id='email'
                 {...register('Email', {
@@ -82,7 +81,7 @@ export function Signup() {
                 })}
               />
               <Input
-                type='text'
+                type='password'
                 placeholder='Password'
                 id='Password'
                 {...register('Password', { required: true, minLength: 8 })}

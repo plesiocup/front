@@ -3,6 +3,6 @@ import { recommendsData } from '../data/recommendsData'
 
 export const contentbasedRecommend = [
   http.get('/contentbasedRecommend', () => {
-    return HttpResponse.json(recommendsData[0])
+    return HttpResponse.json(recommendsData)
   }),
 ]
