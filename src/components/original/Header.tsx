@@ -15,7 +15,6 @@ function Header() {
     navigation(`/search/${data.search}`)
   }
   const userMail = Cookies.get('userMail')
-  console.log(userMail)
 
   return (
     <header className='border-b-[1px] py-3 fixed w-full bg-black top-0 left-0 z-30'>

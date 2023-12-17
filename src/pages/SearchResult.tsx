@@ -40,14 +40,12 @@ function SearchResult() {
   })
 
   const searchId: string | undefined = responseSearchId.data?.data
-  console.log('🙇‍♂️🙇‍♂️', searchId)
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['searchData'],
     queryFn: () => getSearchedData(searchId || ''),
   })
   const itemList: ItemData[] | undefined = data?.data
-  console.log('🎂🎂🎂', itemList)
 
   return (
     <>

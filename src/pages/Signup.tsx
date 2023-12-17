@@ -19,9 +19,6 @@ interface SignUpRequest {
 
 const fetchSignUp = async (reqData: SignUpRequest) => {
   const baseUrl = import.meta.env.VITE_BASE_URL
-  console.log(baseUrl)
-
-  console.log(reqData)
 
   await axios
     .request<SignUpResponse>({

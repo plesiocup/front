@@ -17,12 +17,12 @@ interface getMovieDataResponse {
 }
 
 const contentbasedRecommend = async (category: string) => {
-  // const baseUrl = import.meta.env.VITE_BASE_URL
-  const baseUrl = ''
+  const baseUrl = import.meta.env.VITE_BASE_URL
+  // const baseUrl = ''
 
   const data = await axios.request<ItemData[]>({
     method: 'get',
-    url: `${baseUrl}/contentbasedRecommend/${category}`,
+    url: `${baseUrl}/auth/contentbasedRecommend/${category}`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${Cookies.get('jwt')}`,
@@ -45,7 +45,6 @@ const getMovieData = async (movieId: string) => {
 }
 
 const fetchEvaluation = async (movieId: string, rating: number) => {
-  console.log(movieId, rating)
   const baseUrl = import.meta.env.VITE_BASE_URL
   const data = await axios.request({
     method: 'put',
@@ -85,7 +84,6 @@ function About() {
     queryKey: ['aboutData'],
     queryFn: () => getMovieData(movieId),
   })
-  console.log('🎂' + data?.data.movie.Title)
 
   // dataを別名で定義
   const {
@@ -96,7 +94,6 @@ function About() {
     queryKey: ['recommendData'],
     queryFn: () => contentbasedRecommend(category),
   })
-  console.log(recommendData?.data)
 
   const aboutItem: ItemData | undefined = data?.data.movie
   const recommendItemList: ItemData[] | undefined = recommendData?.data

@@ -32,7 +32,6 @@ const fetchLogin = async (reqData: LoginRequest) => {
       password: reqData.Password,
     },
   })
-  console.log(data)
 
   return data
 }
@@ -55,14 +54,11 @@ export function Login() {
       const jwtToken = data?.data.token
       Cookies.set('jwt', jwtToken)
 
-      console.log(Cookies.get('jwt'))
-
       navigation('/')
     },
   })
   const onSubmit = async (submitData: any) => {
     submitData.Password = SHA256(submitData.Password).toString()
-    console.log(submitData)
     mutate({ ...submitData })
   }
 

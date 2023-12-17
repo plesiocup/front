@@ -9,18 +9,17 @@ import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 
 const fetchRecommends = async () => {
-  // const baseUrl = import.meta.env.VITE_BASE_URL
+  const baseUrl = import.meta.env.VITE_BASE_URL
 
   const data = await axios.request<ItemData[]>({
     method: 'get',
-    // url: `${baseUrl}/auth/userbasedRecommend`,
-    url: `/auth/userbasedRecommend`,
+    url: `${baseUrl}/auth/userbasedRecommend`,
+    // url: `/auth/userbasedRecommend`,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${Cookies.get('jwt')}`,
     },
   })
-  console.log(data)
   return data
 }
 
