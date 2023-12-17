@@ -1,6 +1,7 @@
-import { ItemData } from '@/types/custom/itemData'
+import { convertItemDataListToItemData } from '@/types/change/convertItemDataListToItemData'
+import { ItemData, ItemDataList } from '@/types/custom/itemData'
 
-export const recommendsData: ItemData[] = [
+const recommendsDataRaw: ItemDataList[] = [
   {
     movie_id: 1,
     title: 'ハリー・ポッターと賢者の石',
@@ -9,7 +10,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.5,
     release_year: 2001,
     evaluated_count: 100,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=VyHV0BRtdxo',
     image_url: 'https://i.ytimg.com/vi/VyHV0BRtdxo/maxresdefault.jpg',
     category: 'ファンタジー',
@@ -23,7 +23,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.5,
     release_year: 2002,
     evaluated_count: 100,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=VyHV0BRtdxo',
     image_url: 'https://i.ytimg.com/vi/VyHV0BRtdxo/maxresdefault.jpg',
     category: 'ファンタジー',
@@ -37,7 +36,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.5,
     release_year: 2004,
     evaluated_count: 100,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=VyHV0BRtdxo',
     image_url: 'https://i.ytimg.com/vi/VyHV0BRtdxo/maxresdefault.jpg',
     category: 'ファンタジー',
@@ -51,7 +49,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.5,
     release_year: 2005,
     evaluated_count: 100,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=VyHV0BRtdxo',
     image_url: 'https://i.ytimg.com/vi/VyHV0BRtdxo/maxresdefault.jpg',
     category: 'ファンタジー',
@@ -65,7 +62,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.5,
     release_year: 2007,
     evaluated_count: 100,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=VyHV0BRtdxo',
     image_url: 'https://i.ytimg.com/vi/VyHV0BRtdxo/maxresdefault.jpg',
     category: 'ファンタジー',
@@ -79,7 +75,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 2,
     release_year: 2009,
     evaluated_count: 100,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=VyHV0BRtdxo',
     image_url: 'https://i.ytimg.com/vi/VyHV0BRtdxo/maxresdefault.jpg',
     category: 'ファンタジー',
@@ -93,7 +88,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.2,
     release_year: 2017,
     evaluated_count: 200,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=Q0CbN8sfihY',
     image_url: 'https://i.ytimg.com/vi/Q0CbN8sfihY/maxresdefault.jpg',
     category: 'SF',
@@ -107,7 +101,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.8,
     release_year: 2019,
     evaluated_count: 300,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=TcMBFSGVi1c',
     image_url: 'https://i.ytimg.com/vi/TcMBFSGVi1c/maxresdefault.jpg',
     category: 'アクション',
@@ -121,7 +114,6 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.6,
     release_year: 2019,
     evaluated_count: 250,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=t433PEQGErc',
     image_url: 'https://i.ytimg.com/vi/t433PEQGErc/maxresdefault.jpg',
     category: 'ドラマ',
@@ -135,10 +127,11 @@ export const recommendsData: ItemData[] = [
     evaluation: 4.7,
     release_year: 2011,
     evaluated_count: 150,
-    clicked_count: 0,
     movie_url: 'https://www.youtube.com/watch?v=1As0XkBPYQI',
     image_url: 'https://i.ytimg.com/vi/1As0XkBPYQI/maxresdefault.jpg',
     category: 'ファンタジー',
     play_time: 130,
   },
 ]
+
+export const recommendsData: ItemData[] = convertItemDataListToItemData(recommendsDataRaw)

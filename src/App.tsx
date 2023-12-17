@@ -29,8 +29,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/404' element={<Notfound />} />
           <Route path='*' element={<Navigate to='/404' replace />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/about/:movie_id' element={<About />} />
+          <Route path='' element={<Home />} />
+          <Route path='/about' element={<About />} />
           <Route path='/search/:value' element={<SearchResult />} />
         </Routes>
       </QueryClientProvider>

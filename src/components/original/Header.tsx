@@ -1,7 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { H3 } from '@/components/ui/typography'
+import { H3, P } from '@/components/ui/typography'
+import Cookies from 'js-cookie'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -15,6 +14,8 @@ function Header() {
   const onSubmit = (data: any) => {
     navigation(`/search/${data.search}`)
   }
+  const userMail = Cookies.get('userMail')
+  console.log(userMail)
 
   return (
     <header className='border-b-[1px] py-3 fixed w-full bg-black top-0 left-0 z-30'>
@@ -31,13 +32,33 @@ function Header() {
               id='search'
               {...register('search', { required: true })}
             />
-            <Button type='submit'>Search</Button>
           </div>
         </form>
-        <Avatar>
-          <AvatarImage src='https://github.com/shadcn.png' alt='@shadcn' />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        <div className='flex flex-row items-center space-x-2'>
+          {userMail ? (
+            <>
+              <P className='m-0'>{userMail}</P>
+              <button
+                onClick={() => {
+                  Cookies.remove('userMail')
+                  Cookies.remove('jwt')
+                  navigation('/')
+                }}
+              >
+                <P className='m-0'>Logout</P>
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to='/login'>
+                <P className='m-0'>Login</P>
+              </Link>
+              <Link to='/signup'>
+                <P className='m-0'>Signup</P>
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </header>
   )
