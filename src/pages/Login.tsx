@@ -24,6 +24,9 @@ const fetchLogin = async (reqData: LoginRequest) => {
   const data = await axios.request<LoginResponse>({
     method: 'post',
     url: `${baseUrl}/login`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     data: {
       email: reqData.Email,
       password: reqData.Password,

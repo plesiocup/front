@@ -24,6 +24,9 @@ const fetchSignUp = async (reqData: SignUpRequest) => {
   await axios
     .request<SignUpResponse>({
       method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       url: `${baseUrl}/signup`,
       data: {
         username: reqData.UserName,

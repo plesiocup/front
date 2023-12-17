@@ -24,6 +24,7 @@ const contentbasedRecommend = async (category: string) => {
     method: 'get',
     url: `${baseUrl}/contentbasedRecommend/${category}`,
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${Cookies.get('jwt')}`,
     },
   })

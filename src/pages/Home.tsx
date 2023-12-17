@@ -16,6 +16,7 @@ const fetchRecommends = async () => {
     // url: `${baseUrl}/auth/userbasedRecommend`,
     url: `/auth/userbasedRecommend`,
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${Cookies.get('jwt')}`,
     },
   })
